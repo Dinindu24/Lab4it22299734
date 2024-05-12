@@ -3,7 +3,6 @@ package com.example.myapptaskm
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.Observer
@@ -40,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         taskViewModel = ViewModelProvider(this)[TaskViewModel::class.java]
         taskViewModel.allTasks.observe(this, Observer { tasks: List<Task>? ->
             // Update the cached copy of the tasks in the adapter.
-            tasks?.let { adapter.setTasks(it) }
+            tasks?.let { adapter.addTasks(it) }
         })
 
         val fab: FloatingActionButton = findViewById(R.id.fab)

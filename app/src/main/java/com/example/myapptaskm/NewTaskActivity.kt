@@ -17,18 +17,24 @@ class NewTaskActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_task)
 
+        recyclerView = findViewById(R.id.recyclerViewTasks)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        // Initialize adapter
+        adapter = TaskAdapter()
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
 
         val buttonAddTask: Button = findViewById(R.id.buttonAddTask)
 
         buttonAddTask.setOnClickListener {
             // Add a new task to the list
-            val task = Task(1, "New Task", "Description", task = "task")
+            val tasks = Task(1, "New Task", "Description", task = "tasks")
 
 
-            adapter.addTask(task)
+            adapter.addTask(tasks)
 
             // Add your logic here
         }
