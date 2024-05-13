@@ -1,5 +1,6 @@
 package com.example.myapptaskm
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -10,7 +11,8 @@ import kotlinx.coroutines.launch
 
 class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
 
-    val allTasks = repository.allTasks
+    val allTasks: LiveData<List<Task>> = repository.allTasks
+    //val allTask = repository.allTask
 
     fun insertTask(task: Task) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -25,6 +27,11 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
     fun delete(task: Task) = viewModelScope.launch(Dispatchers.IO) {
         repository.delete(task)
     }
+
+    fun getTask(taskId: Int): LiveData<Task> {
+        return repository.getTask(taskId)
+    }
+
 }
 
 class TaskViewModelFactory(private val repository: TaskRepository) : ViewModelProvider.Factory {

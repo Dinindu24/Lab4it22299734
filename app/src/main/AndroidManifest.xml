@@ -28,6 +28,13 @@
             android:label="New Task Activity"
             android:theme="@style/AppTheme">
         </activity>
+
+        <activity android:name=".TaskDetailActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+
+        <activity android:name=".UpdateTaskActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+
     </application>
 
 </manifest>

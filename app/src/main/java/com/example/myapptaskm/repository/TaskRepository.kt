@@ -8,7 +8,9 @@ import kotlinx.coroutines.withContext
 
 class TaskRepository(private val taskDao: TaskDao) {
 
-    val allTasks: Any =  taskDao.getAllTasks()
+    val allTasks: LiveData<List<Task>> =  taskDao.getAllTasks()
+    //val allTask: LiveData<List<Task>> =  taskDao.getAllTasks()
+
 
     suspend fun insert(task: Task) {
         withContext(Dispatchers.IO) {
@@ -27,4 +29,10 @@ class TaskRepository(private val taskDao: TaskDao) {
             taskDao.delete(task)
         }
     }
+
+    fun getTask(taskId: Int): LiveData<Task> {
+        return taskDao.getTask(taskId)
+    }
+
+
 }
